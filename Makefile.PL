@@ -13,21 +13,23 @@ my %WriteMakefileArgs = (
     INSTALLDIRS         => ($] < 5.011 ? 'perl' : 'site'),
     PREREQ_PM           => {
         'Test::Simple' => 0.44,
+        'LWP::UserAgent' => 0,
+        'Capture::Tiny' => 0,
     },
     ( eval { ExtUtils::MakeMaker->VERSION(6.46) } ? () : ( META_MERGE => {
         'meta-spec' => { version => 2 },
         dynamic_config => 1,
-        #resources => {
-        #    homepage    => undef,
-        #    repository  => {
-        #        url         => undef,
-        #        web         => undef,
-        #        type        => undef,
-        #    },
-        #    bugtracker => {
-        #        web         => undef,
-        #    },
-        #},
+        resources => {
+            homepage => 'http://thenceforward.net/perl/modules/Perl-RT2Github/',
+            repository => {
+                url => 'https://github.com/jkeenan/perl-rt2github.git',
+                web => 'https://github.com/jkeenan/perl-rt2github',
+                type => 'git',
+            },
+            bugtracker => {
+                web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Perl-RT2Github',
+            },
+        },
     })),
 );
 

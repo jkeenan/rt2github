@@ -1,8 +1,8 @@
+Changes
+lib/Perl/RT2Github.pm
+LICENSE
+Makefile.PL
 MANIFEST
 README
-LICENSE
+t/new.t
 Todo
-Changes
-Makefile.PL
-lib/Perl/RT2Github.pm
-t/001_load.t
