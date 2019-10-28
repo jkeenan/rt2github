@@ -1,7 +1,7 @@
 # t/new.t
 use 5.14.0;
 use warnings;
-use Test::More tests => 16;
+use Test::More tests => 22;
 use Capture::Tiny ':all';
 use Data::Dump qw( dd pp );
 
@@ -9,6 +9,16 @@ BEGIN { use_ok( 'Perl::RT2Github' ); }
 
 my $self = Perl::RT2Github->new();
 isa_ok ($self, 'Perl::RT2Github');
+
+{
+    my $self = Perl::RT2Github->new();
+    isa_ok ($self, 'Perl::RT2Github');
+    my $rt_id = '123abc';
+    local $@;
+    eval { $self->get_github_url($rt_id); };
+    like($@, qr/RT IDs were numeric/,
+        "Got expected exception: non-numeric RT ID");
+}
 
 {
     my $self = Perl::RT2Github->new();
@@ -54,6 +64,16 @@ isa_ok ($self, 'Perl::RT2Github');
 {
     my $self = Perl::RT2Github->new( );
     isa_ok ($self, 'Perl::RT2Github');
+    my $rt_id = '123abc';
+    local $@;
+    eval { $self->get_github_ids( $rt_id ); };
+    like($@, qr/RT IDs were numeric/,
+        "Got expected exception: non-numeric RT ID");
+}
+
+{
+    my $self = Perl::RT2Github->new( );
+    isa_ok ($self, 'Perl::RT2Github');
     my $rt_id = 125740;
     my $expected = 14836;
     my $got = $self->get_github_id( $rt_id );
@@ -79,5 +99,17 @@ isa_ok ($self, 'Perl::RT2Github');
     };
     my $got = $self->get_github_ids( @rt_ids );
     is_deeply($got, $expected, "Got expected github ID for RT");
+}
+
+{
+    my $self = Perl::RT2Github->new( );
+    isa_ok ($self, 'Perl::RT2Github');
+    my @rt_ids = ( 125740, 200895 );
+    my $expected = {
+        125740 => 14836,
+        200895 => undef,
+    };
+    my $got = $self->get_github_ids( @rt_ids );
+    is_deeply($got, $expected, "Got expected github ID for valid RT and one undef for invalid");
 }
 
