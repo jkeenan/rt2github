@@ -78,6 +78,8 @@ sub get_github_ids {
 
 1;
 
+=encoding utf8
+
 =head1 NAME
 
 Perl::RT2Github - Given RT ticket number, find corresponding Github issue
@@ -86,8 +88,13 @@ Perl::RT2Github - Given RT ticket number, find corresponding Github issue
 
     use Perl::RT2Github;
 
-    my $self = Perl::RT2Github->new( 12345, 67890 );
-    my $github_urls_ref = $self->get_github_urls();
+    my $self = Perl::RT2Github->new();
+
+    my $github_url      = $self->get_github_url( 125740 );
+    my $github_urls_ref = $self->get_github_urls( 125740, 133776 );
+
+    my $github_id       = $self->get_github_id( 125740 );
+    my $github_ids_ref  = $self->get_github_ids( 125740, 133776 );
 
 =head1 DESCRIPTION
 
@@ -96,21 +103,111 @@ we need to be able to take a list of RT ticket numbers and look up the
 corresponding github issue IDs and URLs.  This module is a first attempt at
 doing so.
 
-=head1 USAGE
+=head1 METHODS
 
-TK
+=head2 C<new()>
+
+=over 4
+
+=item * Purpose
+
+Perl::RT2Github constructor.
+
+=item * Arguments
+
+    my $self = Perl::RT2Github->new();
+
+None.
+
+=item * Return Value
+
+Perl::RT2Github object.
+
+=back
+
+=head2 C<get_github_url()>
+
+=over 4
+
+=item * Purpose
+
+Get github.com URL for old RT ticket number.
+
+=item * Arguments
+
+    my $github_url = $self->get_github_url( 125740 );
+
+A single rt.perl.org ticket ID, which must be all-numeric.
+
+=item * Return Value
+
+String holding URL for corresponding github.com issue.
+
+=back
+
+=head2 C<get_github_urls()>
+
+=over 4
+
+=item * Purpose
+
+Get github.com URLs for multiple old RT ticket numbers.
+
+=item * Arguments
+
+    my $got = $self->get_github_urls( 125740, 200895 );
+
+List of rt.perl.org ticket IDs.
+
+=item * Return Value
+
+Hash reference.
+
+=back
+
+=head2 C<get_github_id()>
+
+=over 4
+
+=item * Purpose
+
+Get github.com issue number for old RT ticket number.
+
+=item * Arguments
+
+    my $github_id = $self->get_github_id( 125740 );
+
+A single rt.perl.org ticket ID, which must be all-numeric.
+
+=item * Return Value
+
+String holding github.com issue number.
+
+=back
+
+=head2 C<get_github_ids()>
+
+=over 4
+
+=item * Purpose
+
+Get github.com ID numbers for multiple old RT ticket numbers.
+
+=item * Arguments
+
+    my $github_ids_ref  = $self->get_github_ids( 125740, 133776 );
+
+List of RT ticket numbers, which must each be all numeric.
+
+=item * Return Value
+
+Hash reference.
+
+=back
 
 =head1 BUGS
 
-
-TK
-
-
-=head1 SUPPORT
-
-
-TK
-
+None so far.
 
 =head1 AUTHOR
 
@@ -121,7 +218,7 @@ TK
 
 =head1 ACKNOWLEDGMENTS
 
-One implementation suggested by ilmari.
+Implementation suggestions from Dagfinn Ilmari Mannsåker and Dan Book.
 
 =head1 COPYRIGHT
 
