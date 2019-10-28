@@ -3,13 +3,13 @@ use 5.14.0;
 use warnings;
 our $VERSION     = '0.01';
 use Carp;
-use LWP::UserAgent;
+use HTTP::Tiny;
 
 sub new {
     my ($class) = @_;
 
     my %data = (
-        rt_stem => 'https://rt.perl.org/Ticket/Display.html?id=',
+        rt_stem => 'https://rt.perl.org/Public/Bug/Display.html?id=',
         gh_stem => 'https://github.com/perl/perl5/issues/',
         field => 'location',
         results => {},
@@ -23,9 +23,9 @@ sub get_github_url {
     croak "RT IDs were numeric" unless $rt =~ m/^\d+$/;
     my $rt_url = $self->{rt_stem} . $rt;
 
-    my $ua = LWP::UserAgent->new(timeout => 10);
-    my $response = $ua->head($rt_url);
-    my $location = $response->previous->header($self->{field});
+    my $ua = HTTP::Tiny->new(max_redirect => 0, timeout => 10);
+    my $location = $ua->get($rt_url)->{headers}{$self->{field}} || '';
+
     if ($location =~ m{^$self->{gh_stem}\d+$}) {
         $self->{results}->{$rt}->{github_url} = $location;
     }
