@@ -1,7 +1,7 @@
 # t/new.t
 use 5.14.0;
 use warnings;
-use Test::More qw(no_plan); # tests => 2;
+use Test::More tests => 16;
 use Capture::Tiny ':all';
 use Data::Dump qw( dd pp );
 
