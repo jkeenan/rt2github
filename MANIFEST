@@ -1,0 +1,8 @@
+MANIFEST
+README
+LICENSE
+Todo
+Changes
+Makefile.PL
+lib/Perl/RT2Github.pm
+t/001_load.t
