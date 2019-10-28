@@ -36,8 +36,6 @@ sub get_github_url {
 }
 
 sub get_github_urls {
-#    my ($self, $rt_ids_ref) = @_;
-#    for my $rt (@{$rt_ids_ref}) {
     my ($self, @rt_ids) = @_;
     my %urls = ();
     for my $rt (@rt_ids) {
