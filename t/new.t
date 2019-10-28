@@ -2,8 +2,6 @@
 use 5.14.0;
 use warnings;
 use Test::More tests => 22;
-use Capture::Tiny ':all';
-use Data::Dump qw( dd pp );
 
 BEGIN { use_ok( 'Perl::RT2Github' ); }
 
