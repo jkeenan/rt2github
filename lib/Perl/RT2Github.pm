@@ -1,7 +1,7 @@
 package Perl::RT2Github;
 use 5.14.0;
 use warnings;
-our $VERSION     = '0.01';
+our $VERSION     = '0.02';
 use Carp;
 use HTTP::Tiny;
 
@@ -13,6 +13,7 @@ sub new {
         gh_stem => 'https://github.com/perl/perl5/issues/',
         field => 'location',
         results => {},
+        ua => HTTP::Tiny->new(max_redirect => 0, timeout => 10),
     );
     my $self = bless \%data, $class;
     return $self;
@@ -23,8 +24,7 @@ sub get_github_url {
     croak "RT IDs were numeric" unless $rt =~ m/^\d+$/;
     my $rt_url = $self->{rt_stem} . $rt;
 
-    my $ua = HTTP::Tiny->new(max_redirect => 0, timeout => 10);
-    my $location = $ua->get($rt_url)->{headers}{$self->{field}} || '';
+    my $location = $self->{ua}->get($rt_url)->{headers}{$self->{field}} || '';
 
     if ($location =~ m{^$self->{gh_stem}\d+$}) {
         $self->{results}->{$rt}->{github_url} = $location;
