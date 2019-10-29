@@ -12,6 +12,7 @@ my %WriteMakefileArgs = (
     VERSION_FROM        => 'lib/Perl/RT2Github.pm',
     AUTHOR              => 'James E Keenan (jkeenan@cpan.org)',
     ABSTRACT            => 'Given RT ticket number, find corresponding Github issue',
+    LICENSE             => 'perl_5',
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
         'Devel::CheckBin' => 0,
