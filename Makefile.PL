@@ -1,8 +1,6 @@
 use ExtUtils::MakeMaker;
 use strict;
 use warnings;
-use Devel::CheckBin;
-check_bin('git');
 
 # Call 'perldoc ExtUtils::MakeMaker' for details of how to influence
 # the contents of the Makefile that is written.
@@ -15,7 +13,6 @@ my %WriteMakefileArgs = (
     LICENSE             => 'perl_5',
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
-        'Devel::CheckBin' => 0,
     },
     INSTALLDIRS         => ($] < 5.011 ? 'perl' : 'site'),
     PREREQ_PM           => {
