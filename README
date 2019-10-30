@@ -8,9 +8,9 @@ one or more RT ID numbers and get back the corresponding Github issue IDs or
 URLs.
 
 Pre-requisites:
-Configuration:  Devel::CheckBin (CPAN)
-Runtime:        HTTP::Tiny (shipped with Perl 5 core distribution 5.14+)
-Testing:        Test::RequiresInternet (CPAN)
+Perl minimum version:   5.20.0
+Runtime:                HTTP::Tiny (shipped with Perl 5 core distribution)
+Testing:                Test::RequiresInternet (CPAN)
 
 At the very least you should be able to use this set of instructions
 to install the module...
