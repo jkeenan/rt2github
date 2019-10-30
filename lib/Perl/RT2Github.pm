@@ -210,6 +210,14 @@ Hash reference.
 
 None so far.
 
+=head1 CONTRIBUTING
+
+The author prefers patches over pull requests on github.com.  To report bugs or
+otherwise contribute to the development of this module, please attach a patch
+(e.g., output of C<git format-patch>) to either (a) an email sent to
+C<bug-Perl-RT2Github@rt.cpan.org>or use the web interface at
+L<https://rt.cpan.org/Ticket/Create.html?Queue=Perl-RT2Github>.
+
 =head1 AUTHOR
 
     James E Keenan
