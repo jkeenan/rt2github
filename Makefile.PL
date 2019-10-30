@@ -8,6 +8,7 @@ use warnings;
 my %WriteMakefileArgs = (
     NAME                => 'Perl::RT2Github',
     VERSION_FROM        => 'lib/Perl/RT2Github.pm',
+    MIN_PERL_VERSION    => '5.20.0',
     AUTHOR              => 'James E Keenan (jkeenan@cpan.org)',
     ABSTRACT            => 'Given RT ticket number, find corresponding Github issue',
     LICENSE             => 'perl_5',
