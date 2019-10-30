@@ -1,7 +1,7 @@
 package Perl::RT2Github;
 use 5.14.0;
 use warnings;
-our $VERSION     = '0.04_001';
+our $VERSION     = '0.04_002';
 use Carp;
 use HTTP::Tiny;
 
@@ -13,7 +13,7 @@ sub new {
         gh_stem => 'https://github.com/perl/perl5/issues/',
         field => 'location',
         results => {},
-        ua => HTTP::Tiny->new(max_redirect => 0, timeout => 10),
+        ua => HTTP::Tiny->new(max_redirect => 0, timeout => 20),
     );
     my $self = bless \%data, $class;
     return $self;
@@ -30,7 +30,6 @@ sub get_github_url {
         $self->{results}->{$rt}->{github_url} = $location;
     }
     else {
-        carp "Location not found; value was: <$location>";
         $self->{results}->{$rt}->{github_url} = undef;
     };
     return $self->{results}->{$rt}->{github_url};
