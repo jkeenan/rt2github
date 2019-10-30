@@ -1,7 +1,7 @@
 package Perl::RT2Github;
 use 5.14.0;
 use warnings;
-our $VERSION     = '0.04_002';
+our $VERSION     = '0.04_003';
 use Carp;
 use HTTP::Tiny;
 
@@ -15,7 +15,7 @@ sub new {
         push @bad_args, $k unless $valid_args{$k};
     }
     croak "Bad arguments to new(): @bad_args" if (@bad_args);
-    $args->{timeout} ||= 20;
+    $args->{timeout} ||= 40;
 
     my %data = (
         rt_stem => 'https://rt.perl.org/Public/Bug/Display.html?id=',
@@ -124,10 +124,10 @@ Perl::RT2Github constructor.
 
 =item * Arguments
 
-    my $self = Perl::RT2Github->new({ timeout => 20});
+    my $self = Perl::RT2Github->new({ timeout => 40});
 
 Hash reference; optional.  Currently, the only possible element in this hashref is
-C<timeout>, whose value defaults to 20 seconds.
+C<timeout>, whose value defaults to 40 seconds.
 
 =item * Return Value
 
