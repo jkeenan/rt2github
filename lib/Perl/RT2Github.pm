@@ -220,6 +220,7 @@ None so far.
 =head1 ACKNOWLEDGMENTS
 
 Implementation suggestions from Dagfinn Ilmari Mannsåker and Dan Book.
+Correction of error in Changes from Graham Knop.
 
 =head1 COPYRIGHT
 
