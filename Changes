@@ -12,3 +12,5 @@ Revision history for Perl module Perl::RT2Github
     - Utilize Test::RequiresInternet to determine if there is an
       internet connection before testing
 
+0.04_01 Wed Oct 30 08:18:11 EDT 2019
+    - Insert debugging output

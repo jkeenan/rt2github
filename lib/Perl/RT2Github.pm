@@ -1,7 +1,7 @@
 package Perl::RT2Github;
 use 5.14.0;
 use warnings;
-our $VERSION     = '0.03';
+our $VERSION     = '0.04_001';
 use Carp;
 use HTTP::Tiny;
 
@@ -30,6 +30,7 @@ sub get_github_url {
         $self->{results}->{$rt}->{github_url} = $location;
     }
     else {
+        carp "Location not found; value was: <$location>";
         $self->{results}->{$rt}->{github_url} = undef;
     };
     return $self->{results}->{$rt}->{github_url};
