@@ -15,7 +15,7 @@ sub new {
         push @bad_args, $k unless $valid_args{$k};
     }
     croak "Bad arguments to new(): @bad_args" if (@bad_args);
-    $args->{timeout} ||= 40;
+    $args->{timeout} ||= 120;
 
     my %data = (
         rt_stem => 'https://rt.perl.org/Public/Bug/Display.html?id=',
@@ -124,10 +124,10 @@ Perl::RT2Github constructor.
 
 =item * Arguments
 
-    my $self = Perl::RT2Github->new({ timeout => 40});
+    my $self = Perl::RT2Github->new({ timeout => 120});
 
 Hash reference; optional.  Currently, the only possible element in this hashref is
-C<timeout>, whose value defaults to 40 seconds.
+C<timeout>, whose value defaults to 120 seconds.
 
 =item * Return Value
 
