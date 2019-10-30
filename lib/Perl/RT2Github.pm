@@ -1,7 +1,7 @@
 package Perl::RT2Github;
 use 5.14.0;
 use warnings;
-our $VERSION     = '0.04_003';
+our $VERSION = '0.04';
 use Carp;
 use HTTP::Tiny;
 
@@ -238,6 +238,7 @@ L<https://rt.cpan.org/Ticket/Create.html?Queue=Perl-RT2Github>.
 
 Implementation suggestions from Dagfinn Ilmari Mannsåker and Dan Book.
 Correction of error in Changes from Graham Knop.
+Patch to Makefile.PL from Mohammad S Anwar.
 
 =head1 COPYRIGHT
 
