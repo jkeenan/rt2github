@@ -6,14 +6,23 @@ use Carp;
 use HTTP::Tiny;
 
 sub new {
-    my ($class) = @_;
+    my ($class, $args) = @_;
+    $args = {} unless defined $args;
+    croak "Argument to new() must be hashref" unless ref($args) eq 'HASH';
+    my %valid_args = map {$_ => 1} (qw| timeout |);
+    my @bad_args = ();
+    while (my ($k,$v) = each(%{$args})) {
+        push @bad_args, $k unless $valid_args{$k};
+    }
+    croak "Bad arguments to new(): @bad_args" if (@bad_args);
+    $args->{timeout} ||= 20;
 
     my %data = (
         rt_stem => 'https://rt.perl.org/Public/Bug/Display.html?id=',
         gh_stem => 'https://github.com/perl/perl5/issues/',
         field => 'location',
         results => {},
-        ua => HTTP::Tiny->new(max_redirect => 0, timeout => 20),
+        ua => HTTP::Tiny->new(max_redirect => 0, timeout => $args->{timeout}),
     );
     my $self = bless \%data, $class;
     return $self;
@@ -115,9 +124,10 @@ Perl::RT2Github constructor.
 
 =item * Arguments
 
-    my $self = Perl::RT2Github->new();
+    my $self = Perl::RT2Github->new({ timeout => 20});
 
-None.
+Hash reference; optional.  Currently, the only possible element in this hashref is
+C<timeout>, whose value defaults to 20 seconds.
 
 =item * Return Value
 
