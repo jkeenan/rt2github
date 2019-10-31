@@ -1,7 +1,7 @@
 package Perl::RT2Github;
 use 5.14.0;
 use warnings;
-our $VERSION = '0.04';
+our $VERSION = '0.04_005';
 use Carp;
 use HTTP::Tiny;
 
@@ -15,7 +15,7 @@ sub new {
         push @bad_args, $k unless $valid_args{$k};
     }
     croak "Bad arguments to new(): @bad_args" if (@bad_args);
-    $args->{timeout} ||= 120;
+    $args->{timeout} ||= 20;
 
     my %data = (
         rt_stem => 'https://rt.perl.org/Public/Bug/Display.html?id=',
